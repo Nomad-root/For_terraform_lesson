@@ -1,10 +1,12 @@
 provider "aws" {
   region = "us-east-1"
 }
+/*
 resource "aws_eip" "static_ip" {
   instance = "${aws_instance.AWS_web_server.id}"
   vpc = true
 }
+*/
 resource "aws_instance" "AWS_web_server" {
   ami                    = "ami-05fa00d4c63e32376"
   instance_type          = "t2.micro"
@@ -21,6 +23,16 @@ resource "aws_instance" "AWS_web_server" {
   lifecycle {
     create_before_destroy = true
   }
+}
+resource "aws_instance" "Ubu" {
+  ami = "ami-08d4ac5b634553e16"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.For_Linux.id]
+  tags = {
+    Name = "Ubuntu Server by Terraform"
+    Owner = "Nomad"
+  }
+  depends_on = [aws_instance.AWS_web_server]
 }
 resource "aws_security_group" "For_Linux" {
   name        = "Linux_security"
