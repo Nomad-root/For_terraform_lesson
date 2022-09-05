@@ -42,3 +42,9 @@ resource "aws_security_group" "For_Linux" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+output "ami" {
+  value = "${aws_instance.AWS_web_server.ami}"
+}
+output "vpc" {
+  value = "${aws_security_group.For_Linux.vpc_id}"
+}
