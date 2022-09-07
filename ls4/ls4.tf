@@ -1,12 +1,12 @@
 provider "aws" {
   region = "us-east-1"
 }
-/*
+
 resource "aws_eip" "static_ip" {
-  instance = "${aws_instance.AWS_web_server.id}"
+  instance = aws_instance.AWS_web_server.id
   vpc = true
 }
-*/
+
 resource "aws_instance" "AWS_web_server" {
   ami                    = "ami-05fa00d4c63e32376"
   instance_type          = "t2.micro"
@@ -55,8 +55,8 @@ resource "aws_security_group" "For_Linux" {
   }
 }
 output "ami" {
-  value = "${aws_instance.AWS_web_server.ami}"
+  value = aws_instance.AWS_web_server.ami
 }
 output "vpc" {
-  value = "${aws_security_group.For_Linux.vpc_id}"
+  value = aws_security_group.For_Linux.vpc_id
 }
