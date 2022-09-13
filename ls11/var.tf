@@ -10,3 +10,9 @@ variable "pub_subnet" {
 variable "private_subnet" {
   default = ["10.0.11.0/24","10.0.22.0/24"]
 }
+variable "tags" {
+  default = {
+    Owner   = "Sergey Nomad"
+    Project = "Lesson Module"
+  }
+}
